@@ -99,6 +99,14 @@ private extension ForecastFeed {
 extension ForecastFeed: UICollectionViewDataSource{
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
+        
+        // TODO: Fix this once we figure out why the observer isn't firing
+        if _sectionHeaders.count == 0 {
+            summarize()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute: {
+                self._collectionView.reloadData()
+            })
+        }
         return _sectionHeaders.count
     }
     
