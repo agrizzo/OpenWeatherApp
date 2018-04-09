@@ -14,6 +14,7 @@ class HourlySummaryCell: UICollectionViewCell {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var underlyingView: UIView!
     
     /// Information needed for display
     var forecast: HourlySummaryCellDataType! {
@@ -25,6 +26,10 @@ class HourlySummaryCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        underlyingView.layer.cornerRadius = 5
+        underlyingView.layer.borderWidth = 2
+        underlyingView.layer.borderColor = UIColor.black.cgColor
     }
 
 }
