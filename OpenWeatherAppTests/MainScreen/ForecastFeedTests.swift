@@ -32,6 +32,7 @@ class ForecastFeedTests: XCTestCase {
 
         
         dataManagerTest.hourlyForecasts = [Forecast(unitOfMeasure: .imperial, temperature: 44, overview: "test", dateTime: Date())]
+        dataManagerTest.observer?.newObservation(message: dataManagerTest.message)
         
         XCTAssertEqual(sut.collectionView(collectionDouble, numberOfItemsInSection: 0), 1)
 

@@ -19,6 +19,7 @@ class DataManagerDouble: DataManagerType {
     var endPoint: ForecastRetrieverType?
     var observer: Observer?
     var observerID: String?
+    let message = "message"
 
 
     init() {
@@ -33,7 +34,7 @@ class DataManagerDouble: DataManagerType {
     func addForecast(observer: Observer) -> (String, String) {
         self.lastFunctionCalled = "addForecast"
         self.observer = observer
-        return ("message","identifier")
+        return (message,"identifier")
     }
     
     func removeForecast(observerID: String) {
