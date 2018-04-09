@@ -13,11 +13,14 @@ class ViewController: UIViewController {
 
     private var _datafeed: ForecastFeed!
     let collectionView: UICollectionView = {
-        let retValue = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
+        let layout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+        let retValue = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         retValue.translatesAutoresizingMaskIntoConstraints = false
         retValue.backgroundColor = #colorLiteral(red: 0.5843228698, green: 0.7776433825, blue: 0.9999347329, alpha: 1)
         return retValue
     }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()

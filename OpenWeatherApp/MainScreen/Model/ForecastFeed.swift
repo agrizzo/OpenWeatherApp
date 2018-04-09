@@ -14,14 +14,25 @@ class ForecastFeed: NSObject {
     private var _observerID: String?
     private var _messageID: String?
     private var _collectionView: UICollectionView!
-    private var _formatter = DateFormatter()
     
     private var _sectionHeaders = [String]()
     private var _sectionDetail = [[ForecastType]]()
     
     private let _hourlyCell: String = "HourlySummaryCell"
     
-
+    private lazy var _hourExtracter: DateFormatter = {
+        let retValue = DateFormatter()
+        retValue.dateStyle = .none
+        retValue.timeStyle = .short
+        return retValue
+    }()
+    
+    private lazy var _dateExtracter: DateFormatter = {
+        let retValue = DateFormatter()
+        retValue.dateStyle = .short
+        retValue.timeStyle = .none
+        return retValue
+    }()
     
     init(collectionView: UICollectionView, dataManager: DataManagerType? = nil) {
         super.init()
@@ -35,21 +46,13 @@ class ForecastFeed: NSObject {
 
         getData()
         
-        setUpFormatter()
         summarize()
-        
     }
-    
 }
 
 // MARK: - Private Functions
 private extension ForecastFeed {
-    func setUpFormatter(){
-        _formatter.dateStyle = .none
-        _formatter.timeStyle = .short
 
-    }
-    
     func getData() {
         // update data
         let dataManager = DataManager()
@@ -64,23 +67,16 @@ private extension ForecastFeed {
     }
     
     func summarize(){
-        
-        let hourExtracter = DateFormatter()
-        hourExtracter.dateStyle = .none
-        hourExtracter.timeStyle = .short
 
-        let dateExtracter = DateFormatter()
-        dateExtracter.dateStyle = .short
-        dateExtracter.timeStyle = .none
-
-        var wip = _dataManager.hourlyForecasts.sorted { return $0.dateTime < $1.dateTime }
+        let wip = _dataManager.hourlyForecasts.sorted { return $0.dateTime < $1.dateTime }
         guard wip.count > 0 else { return }
-        
-        var sectionHeaders: [String] = [dateExtracter.string(from: wip[0].dateTime)]
-        var sectionDetail: [[ForecastType]] = [[wip[0]]]
+
+        var sectionHeaders = [String]()
+        var sectionDetail = [[ForecastType]]()
+
         for entry in wip {
-            let date = dateExtracter.string(from: entry.dateTime)
-            if date == sectionHeaders.last! {
+            let date = _dateExtracter.string(from: entry.dateTime)
+            if date == sectionHeaders.last {
                 sectionDetail[sectionDetail.count - 1] = sectionDetail.last! + [entry]
             } else {
                 sectionHeaders.append(date)
@@ -90,27 +86,42 @@ private extension ForecastFeed {
         
         self._sectionDetail = sectionDetail
         self._sectionHeaders = sectionHeaders
-        
+    }
+    
+    func reloadRequest() {
+        DispatchQueue.main.async {
+            self._collectionView.reloadData()
+        }
     }
 }
 
 
-// MARK: - UICollectionViewSource
+// MARK: - UICollectionViewDataSource
 extension ForecastFeed: UICollectionViewDataSource{
+    
+    func resetProblem(_ info: String = ""){
+        print("problem found: \(info)")
+        summarize()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute: {
+            self._collectionView.reloadData()
+        })
+    }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         
         // TODO: Fix this once we figure out why the observer isn't firing
         if _sectionHeaders.count == 0 {
-            summarize()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute: {
-                self._collectionView.reloadData()
-            })
+            resetProblem("numberOfsection where count = \(_sectionHeaders.count)")
         }
         return _sectionHeaders.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        // TODO: Another problem to solve
+        guard _sectionDetail.count > section else {
+            resetProblem("numberOfItemsInSection: \(_sectionDetail.count) > [section] \(section)")
+            return 0
+        }
         return _sectionDetail[section].count
     }
     
@@ -120,7 +131,7 @@ extension ForecastFeed: UICollectionViewDataSource{
 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: _hourlyCell, for: indexPath) as! HourlySummaryCell
         cell.forecast = CellData(forecastType: _dataManager.hourlyForecasts[indexPath.row])
-        cell.forecast = CellData(forecastType: _sectionDetail[indexPath.section][indexPath.row], formatter: _formatter)
+        cell.forecast = CellData(forecastType: _sectionDetail[indexPath.section][indexPath.row], formatter: _hourExtracter)
         //        cell.forecast = CellData(time: "Time", temperature: "77F", weather: "Nice Outside") // TODO: Cleanup
         
         return cell
@@ -137,17 +148,16 @@ extension ForecastFeed: UICollectionViewDataSource{
         
         return header
     }
-
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
 extension ForecastFeed: UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 100 , height: 100)
+        return CGSize(width: 125 , height: 125)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: _collectionView.bounds.width, height: 50)
+        return CGSize(width: _collectionView.bounds.width, height: 70)
     }
     
 }
@@ -160,14 +170,11 @@ extension ForecastFeed: Observer {
             return
         }
         summarize()
-
-        DispatchQueue.main.async {
-            self._collectionView.reloadData()
-        }
+        reloadRequest()
     }
 }
 
-// Struct
+// MARK: - Model Transformation Struct
 struct CellData: HourlySummaryCellDataType {
     var time: String
     var temperature: String
