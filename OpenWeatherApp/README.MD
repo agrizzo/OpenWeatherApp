@@ -25,3 +25,6 @@ There are also readily available icons corresponding to the weather description 
 
 * Multi-environment design: Production, Development, Beta
 
+### Technical Debt
+* Code coverage is not 100%. The last part of the app (the UICollectionViewDataSource), was not fully tested.
+* There seems to be an issue with with the initial load from the API. The observing technology needs to be revisited. While it passed unit testing, there is something amiss
