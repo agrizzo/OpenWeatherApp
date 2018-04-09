@@ -95,6 +95,7 @@
 		A0DFB6AA207AEBB700B8E95C /* JSONForeCastTests_problemData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DFB6A9207AEBB700B8E95C /* JSONForeCastTests_problemData.swift */; };
 		A0DFB6AD207AFF2E00B8E95C /* CollectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DFB6AB207AFF2E00B8E95C /* CollectionHeader.swift */; };
 		A0DFB6AE207AFF2E00B8E95C /* CollectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = A0DFB6AC207AFF2E00B8E95C /* CollectionHeader.xib */; };
+		A0DFB6B0207B082C00B8E95C /* README.MD in Resources */ = {isa = PBXBuildFile; fileRef = A0DFB6AF207B082C00B8E95C /* README.MD */; };
 		A0F26E882078EC8600C2B61D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F26E872078EC8600C2B61D /* AppDelegate.swift */; };
 		A0F26E8A2078EC8600C2B61D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F26E892078EC8600C2B61D /* ViewController.swift */; };
 		A0F26E8D2078EC8600C2B61D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0F26E8B2078EC8600C2B61D /* Main.storyboard */; };
@@ -183,6 +184,7 @@
 		A0DFB6A9207AEBB700B8E95C /* JSONForeCastTests_problemData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONForeCastTests_problemData.swift; sourceTree = "<group>"; };
 		A0DFB6AB207AFF2E00B8E95C /* CollectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionHeader.swift; sourceTree = "<group>"; };
 		A0DFB6AC207AFF2E00B8E95C /* CollectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionHeader.xib; sourceTree = "<group>"; };
+		A0DFB6AF207B082C00B8E95C /* README.MD */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.MD; sourceTree = "<group>"; };
 		A0F26E842078EC8600C2B61D /* OpenWeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenWeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0F26E872078EC8600C2B61D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A0F26E892078EC8600C2B61D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -455,6 +457,7 @@
 		A0F26E862078EC8600C2B61D /* OpenWeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				A0DFB6AF207B082C00B8E95C /* README.MD */,
 				A0F26E872078EC8600C2B61D /* AppDelegate.swift */,
 				A0F26E892078EC8600C2B61D /* ViewController.swift */,
 				A0F26E8B2078EC8600C2B61D /* Main.storyboard */,
@@ -600,6 +603,7 @@
 				A0F26E922078EC8600C2B61D /* LaunchScreen.storyboard in Resources */,
 				A0F26E8F2078EC8600C2B61D /* Assets.xcassets in Resources */,
 				A092C5CB207AD4F000DF244A /* BlueCell.xib in Resources */,
+				A0DFB6B0207B082C00B8E95C /* README.MD in Resources */,
 				A0F26E8D2078EC8600C2B61D /* Main.storyboard in Resources */,
 				A05D826920793B8700E65212 /* HourlySummaryCell.xib in Resources */,
 			);

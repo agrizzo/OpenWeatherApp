@@ -42,7 +42,7 @@ class JSONForeCastTests: XCTestCase {
     
     func testTransformToForecast() {
         
-        let sut: JSONForecast!
+        var sut: JSONForecast!
         
         do {
             sut = try JSONDecoder().decode(JSONForecast.self, from: self.getSmallerJSON())
@@ -61,6 +61,18 @@ class JSONForeCastTests: XCTestCase {
         
         XCTAssertEqual(testForecast, transformed[0])
         
+    }
+    
+    func testProblemData(){
+        var sut: JSONForecast!
+        
+        do {
+            sut = try JSONDecoder().decode(JSONForecast.self, from: self.getProblemData1())
+        } catch {
+            XCTFail("\(error)")
+        }
+        
+        XCTAssertNotNil(sut)
     }
 }
 

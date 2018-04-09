@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HourlySummaryCell" customModule="OpenWeatherApp" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HourlySummaryCell" id="gTV-IL-0wX" customClass="HourlySummaryCell" customModule="OpenWeatherApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="225" height="169"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="225" height="169"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10:00 AM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sGf-mB-oui">
+                        <rect key="frame" x="0.0" y="0.0" width="225" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="55F" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jnX-rs-nci">
+                        <rect key="frame" x="0.0" y="25.5" width="225" height="25.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Partly Sunny" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LgJ-w7-OVs">
+                        <rect key="frame" x="0.0" y="63" width="225" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <color key="backgroundColor" red="0.58432286977767944" green="0.77764338254928589" blue="0.99993473291397095" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="jnX-rs-nci" firstAttribute="top" secondItem="sGf-mB-oui" secondAttribute="bottom" constant="5" id="0BP-0Z-dLR"/>
+                <constraint firstItem="sGf-mB-oui" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="6Df-fv-3pv"/>
+                <constraint firstAttribute="trailing" secondItem="LgJ-w7-OVs" secondAttribute="trailing" id="8L1-cf-dxo"/>
+                <constraint firstItem="jnX-rs-nci" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="C6x-BI-T5Y"/>
+                <constraint firstItem="LgJ-w7-OVs" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="DtR-kJ-gTx"/>
+                <constraint firstItem="jnX-rs-nci" firstAttribute="centerX" secondItem="sGf-mB-oui" secondAttribute="centerX" id="SdD-Hu-BiJ"/>
+                <constraint firstAttribute="trailing" secondItem="jnX-rs-nci" secondAttribute="trailing" id="lmn-C6-hRS"/>
+                <constraint firstAttribute="trailing" secondItem="sGf-mB-oui" secondAttribute="trailing" id="nTf-hN-apT"/>
+                <constraint firstItem="sGf-mB-oui" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="sM2-il-YO6"/>
+                <constraint firstItem="LgJ-w7-OVs" firstAttribute="top" secondItem="jnX-rs-nci" secondAttribute="bottom" constant="12" id="yaZ-aK-5kb"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="225" height="168"/>
+            <connections>
+                <outlet property="descriptionLabel" destination="LgJ-w7-OVs" id="Aqz-zh-Avx"/>
+                <outlet property="temperatureLabel" destination="jnX-rs-nci" id="2Sp-B8-LLb"/>
+                <outlet property="timeLabel" destination="sGf-mB-oui" id="sxI-gY-i09"/>
+            </connections>
+            <point key="canvasLocation" x="112.5" y="110.5"/>
+        </collectionViewCell>
+    </objects>
+</document>
