@@ -7,11 +7,11 @@
 //
 
 import Foundation
+@testable import OpenWeatherApp
 
 /// Test Double
 class DataManagerDouble: DataManagerType {
 
-    
     var hourlyForecasts: [ForecastType]
 
     

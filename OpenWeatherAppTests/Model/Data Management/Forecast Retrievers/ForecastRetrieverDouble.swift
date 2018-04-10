@@ -7,6 +7,7 @@
 //
 
 import Foundation
+@testable import OpenWeatherApp
 
 /// Testing Double for Forecast Retrievers
 class ForecastRetrieverDouble: ForecastRetrieverType {

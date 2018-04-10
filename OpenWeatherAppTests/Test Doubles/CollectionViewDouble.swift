@@ -8,11 +8,24 @@
 
 import UIKit
 import XCTest
+@testable import OpenWeatherApp
 
 class CollectionViewDouble: UICollectionView {
 
     
-    var lastFunctionCalled: String?
+    var lastFunctionCalled: String? {
+        get {
+            return functionCallQueue.last
+        }
+        set {
+            if let new = newValue {
+                functionCallQueue.append(new)
+            } else {
+                functionCallQueue.removeAll()
+            }
+        }
+    }
+    var functionCallQueue: [String] = [String]()
     var expectation: XCTestExpectation?
     
     init() {
@@ -28,5 +41,14 @@ class CollectionViewDouble: UICollectionView {
         self.expectation?.fulfill()
         super.reloadData()
     }
+    
+    override func register(_ nib: UINib?, forCellWithReuseIdentifier identifier: String) {
+        lastFunctionCalled = "register(:forCellWithReuseIdentifier:)"
+        super.register(nib, forCellWithReuseIdentifier: identifier)
+    }
 
+    override func dequeueReusableCell(withReuseIdentifier identifier: String, for indexPath: IndexPath) -> UICollectionViewCell {
+        lastFunctionCalled = "dequeueReusableCell(:withReuseIdentifier:)"
+        return super.dequeueReusableCell(withReuseIdentifier: identifier, for: indexPath)
+    }
 }

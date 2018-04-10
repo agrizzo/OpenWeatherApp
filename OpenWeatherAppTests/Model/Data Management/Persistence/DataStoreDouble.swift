@@ -7,6 +7,7 @@
 //
 
 import Foundation
+@testable import OpenWeatherApp
 
 /// Testing Double for Data Stores
 class DataStoreDouble: DataStoreType {

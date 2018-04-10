@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import OpenWeatherApp
 
 class ForecastFeedTests: XCTestCase {
     
@@ -58,15 +59,16 @@ class ForecastFeedTests: XCTestCase {
         
     }
     
-//    func testCells(){
-//        dataManagerTest.hourlyForecasts = [Forecast(unitOfMeasure: .imperial, temperature: 44, overview: "test", dateTime: Date())]
-//        let sut = ForecastFeed(collectionView: collectionDouble, dataManager: dataManagerTest)
-//        XCTAssertEqual(sut.collectionView(collectionDouble, numberOfItemsInSection: 0), 1)
-//        
-//        let indexPath = IndexPath(row: 0, section: 0)
-//        let cell = sut.collectionView(collectionDouble, cellForItemAt: indexPath) as! HourlySummaryCell
-//        print("\(cell.forecast)")
-//    }
+    func testCells(){
+        dataManagerTest.hourlyForecasts = [Forecast(unitOfMeasure: .imperial, temperature: 44, overview: "test", dateTime: Date())]
+        let sut = ForecastFeed(collectionView: collectionDouble, dataManager: dataManagerTest)
+        collectionDouble.dataSource = sut
+        XCTAssertEqual(sut.collectionView(collectionDouble, numberOfItemsInSection: 0), 1)
+        
+        let indexPath = IndexPath(row: 0, section: 0)
+        let cell = sut.collectionView(collectionDouble, cellForItemAt: indexPath) as! HourlySummaryCell
+        print("\(cell.forecast)")
+    }
     
     
 }

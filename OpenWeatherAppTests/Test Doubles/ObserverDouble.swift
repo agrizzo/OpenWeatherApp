@@ -7,6 +7,7 @@
 //
 
 import Foundation
+@testable import OpenWeatherApp
 
 /// Observer Double
 class ObserverDouble: Observer {

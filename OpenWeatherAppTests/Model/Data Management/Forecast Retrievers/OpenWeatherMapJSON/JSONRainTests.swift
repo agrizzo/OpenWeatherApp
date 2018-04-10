@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import OpenWeatherApp
 
 class JSONRainTests: XCTestCase {
     
